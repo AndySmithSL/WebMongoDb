@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/WebMongoDb/v15
+/.vs/WebMongoDb/DesignTimeBuild
+/.vs/config
+/WebMongoDb/bin/Debug/netcoreapp2.1
+/WebMongoDb/obj

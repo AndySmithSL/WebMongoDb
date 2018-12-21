@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebMongoDb.Models.Territory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <i class='text-white' style='font-size:16px'></i>
+    <a class="navbar-brand pl-2" href="#">Continents</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" asp-action="Create">New</a>
+        </li>
+    </ul>
+</nav>
+<br />
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Name).Titled("Name");
+        columns.Add(model => model.LocalName).Titled("LocalName");
+        columns.Add(model => model.IsoCode).Titled("Code");
+        columns.Add(model => model.TerritoryType.Type).Titled("Type");
+        columns.Add(model => model.GeochartLevel.Level).Titled("Level");
+        columns.Add().Encoded(false).RenderedAs(model =>
+            "<div class='btn-group float-right'>" +
+                $"<a class='btn btn-dark btn-sm rounded-0' href='/Territory/Edit/{model.Id}'>Edit</a>" +
+                $"<a class='btn btn-dark btn-sm rounded-0' href='/Territory/Details/{model.Id}'>Details</a>" +
+                $"<a class='btn btn-dark btn-sm rounded-0' href='/Territory/Delete/{model.Id}'>Delete</a>" +
+            "</div>"
+        );
+    })
+    .Empty("No data found")
+    .Filterable()
+    .Sortable()
+    .Pageable()
+    .AppendCss("table-light table-striped table-hover small")
+)
